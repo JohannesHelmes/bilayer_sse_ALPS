@@ -14,6 +14,7 @@ parser.add_argument('--Jrange','-j', nargs=3,type=float,help='range of J values:
 parser.add_argument('--infile','-i', help='Prefix of .in.xml')
 parser.add_argument('--geofile','-g', help='File (prefix) containing the geometry of the increments')
 parser.add_argument('--partsize','-p',default=1, type=int,help='Size subsimulation partition for better distribution on HPC, default=1')
+parser.add_argument('--half', help='Indicates, that only half of the geometry file is used (e.g. only up to the square)',action='store_true')
 args=parser.parse_args()
 
 if (args.Jrange==None):
@@ -32,6 +33,8 @@ if (beta==None):
 
 for J in Jlist:
     Geometry=np.genfromtxt(args.geofile+'.geo',dtype=str)
+    if (args.half):
+        Geometry = Geometry[:len(Geometry)/2]
 
     for i,IncEl in enumerate(Geometry):
  
