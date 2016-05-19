@@ -14,9 +14,8 @@ ifeq ($(host), l29)
 	include $(ALPS_ROOT)/share/alps/include.mk
 	SRC = /home/helmes/Work/bilayer_sse_ALPS/src
 	BIN = /home/helmes/Work/bilayer_sse_ALPS/bin
-	#CXX = /home/helmes/intel/bin/icpc
-	CXX = /usr/bin/c++
-	CXXFLAGS = -O2 -DNDEBUG -march=corei7 -std=c++0x
+	CXX = /home/helmes/intel2016/bin/icpc
+	CXXFLAGS = -O2 -DNDEBUG -march=corei7 -std=c++11
 endif
 ifeq ($(host), johannes-thinkpad)
 	ALPS_ROOT = /opt/alps
