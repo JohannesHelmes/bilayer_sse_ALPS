@@ -35,7 +35,7 @@ endif
 
 
 
-all: XYbilayer
+all: XYbilayer kondonecklace
 	@echo $(host)
 	@echo $(BIN)
 	@echo $(LDFLAGS)
@@ -44,7 +44,7 @@ all: XYbilayer
 $(BIN)/%.o: $(SRC)/%.cpp $(SRC)/%.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@ $(COMFLAG)
 
-$(BIN)/main.o: $(SRC)/main.C
+$(BIN)/main%.o: $(SRC)/main%.C
 	$(CXX) $(CPPFLAGS)  $(CXXFLAGS) -c $< -o $@ 
 ###################### End Patterns ##############################
 
@@ -52,5 +52,8 @@ $(BIN)/main.o: $(SRC)/main.C
 XYbilayer: $(BIN)/XYbilayer.o $(BIN)/main.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $(BIN)/$@ $(BIN)/XYbilayer.o $(BIN)/main.o $(LDFLAGS) $(LIBS) $(LINKFLAG) $(COMFLAG)
 
+kondonecklace: $(BIN)/kondonecklace.o $(BIN)/main_kondo.o
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $(BIN)/$@ $(BIN)/kondonecklace.o $(BIN)/main_kondo.o $(LDFLAGS) $(LIBS) $(LINKFLAG) $(COMFLAG)
+
 clean:
-	$(RM) $(RMFLAGS) $(BIN)/*.o $(BIN)/XYbilayer
+	$(RM) $(RMFLAGS) $(BIN)/*.o $(BIN)/XYbilayer $(BIN)/kondonecklace
